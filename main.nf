@@ -3,7 +3,7 @@
 
 
 if (params.bindir) ch_bin = Channel.value(file(params.bindir))
-
+if(params.file) ch_file = Channel.value(file(params.file))
 
 
 // A txt file with one bin file per row
@@ -31,13 +31,13 @@ process gender_qc {
   time '10h'
 
   input:
-  path bin_dir from ch_bin
+  path "${params.project}/${params.file}" from ch_file
   output:
-  path "list_file.txt"
+  path "file2.txt"
 
   script:
   """
-  ls $bin_dir > list_file.txt
+  cp ${params.project}/${params.file} file2.txt
 
   """
 }
