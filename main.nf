@@ -19,9 +19,6 @@ process gender_qc {
   path "${params.file}" from ch_file
   script:
   """
-  mkdir ${params.project}
-  mv ${params.file} ${params.project}
-  
-  ls ${params.project}/${params.file}
+  ls ${params.file}
   """
 }
