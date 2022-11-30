@@ -111,27 +111,29 @@ ch_exomiser_data = Channel.fromPath("${params.exomiser_data}")
 //remove
 //ch_vcf_inspect.dump(tag:'ch_vcf')
 
-
-process ped_hpo_creation {
-  publishDir "${params.outdir}/familyfile/", mode: 'copy'
-  input:
-  file family_file from ch_vcf
-  output:
-  file "*-HPO.txt" into hpo_ch
-  file "*.ped" into ped_ch
-  script:
-  """
-  pip install ped_parser
-  python3 ${params.py_file} --input_family $family_file
-  """
+if(!params.ped_file){
+  process ped_hpo_creation {
+    publishDir "${params.outdir}/familyfile/", mode: 'copy'
+    input:
+    file family_file from ch_vcf
+    output:
+    file "*-HPO.txt" into hpo_ch
+    file "*.ped" into ped_ch
+    script:
+    """
+    pip install ped_parser
+    python3 ${params.py_file} --input_family $family_file
+    """
+  }
 }
+
 
 
 
 
 process exomiser {
   tag "${vcf_path}-${prioritiser}"
-  publishDir "${params.outdir}/${sample_name}", mode: 'copy'
+  publishDir "${params.outdir}/exomiser", mode: 'copy'
 
   input:
   set run_id, proband_id, hpo, file(vcf_path), file(vcf_index_path), proband_sex, mother_id, father_id from ch_input
