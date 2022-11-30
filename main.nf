@@ -174,6 +174,7 @@ process exomiser {
     ls -l
     # Workaround for symlinked files not found
     HPO_TERMS="${proband_id}-HPO.txt"
+    VCF_PATH="${vcf_path}"
 
     # error if no HPO term found
     if [[ "\${HPO_TERMS}" == "null" ]]; then
