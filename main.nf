@@ -113,7 +113,7 @@ ch_exomiser_data = Channel.fromPath("${params.exomiser_data}")
 
 
 process ped_hpo_creation {
-  storeDir "$baseDir/output/"
+  publishDir "${params.outdir}/familyfile/", mode: 'copy'
   input:
   file family_file from ch_vcf
   output:
@@ -121,7 +121,8 @@ process ped_hpo_creation {
   file "*.ped" into ped_ch
   script:
   """
-  python3 $baseDir/bin/ped_module.py --input_family $family_file
+  pip install ped_parser
+  python3 ${params.py_file} --input_family $family_file
   """
 }
 
