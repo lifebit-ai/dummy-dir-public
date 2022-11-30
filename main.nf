@@ -195,7 +195,7 @@ process exomiser {
       # Swap placeholders with user provided values
       sed -i "s/hpo_ids_placeholder/\$HPO_TERMS/g" new_auto_config.yml
       sed -i "s/analysis_mode_placeholder/${params.analysis_mode}/g" new_auto_config.yml
-      sed -i  "s/vcf_placeholder/${vcf_path}/" new_auto_config.yml
+      sed -i  "s/vcf_placeholder/\$VCF_PATH" new_auto_config.yml
       sed -i  "s/output_prefix_placeholder/sample-${vcf_path.simpleName}/" new_auto_config.yml
       sed -i  "s/prioritiser_placeholder/${prioritiser}/" new_auto_config.yml
       sed -i  "s/min_priority_score_placeholder/${params.min_priority_score}/" new_auto_config.yml
