@@ -1,5 +1,5 @@
 #!/usr/bin/env nextflow
-//nextflow.enable.dsl=1
+nextflow.enable.dsl=1
 import groovy.json.*
 
 /*
@@ -62,7 +62,7 @@ Channel
     .ifEmpty { exit 1, "Cannot find input file : ${params.input}" }
     .splitCsv(skip:1, sep:'\t')
     .map { run_id, proband_id, hpo, vcf_path, vcf_index_path, proband_sex, mother_id, father_id -> [ run_id, proband_id, hpo, file(vcf_path), file(vcf_index_path), proband_sex, mother_id, father_id ] }
-    .into { ch_input; ch_input_view }
+    .set {ch_input}
 
 // Conditional creation of channels, custom if provided else default from bin/
 projectDir = workflow.projectDir
@@ -158,6 +158,10 @@ process exomiser {
     def exomiser_executable = "/exomiser/exomiser-cli-"+"${params.exomiser_version}"+".jar"
     def exomiser = "java -Xms2g -Xmx4g -jar "+"${exomiser_executable}"
     """
+    echo "$vcf_path"
+    # link the staged/downloaded data to predefined path
+    ln -s "\$PWD/$exomiser_data/" /data/exomiser-data-bundle
+
     # link the staged/downloaded data to predefined path
     ln -s "\$PWD/$exomiser_data/" /data/exomiser-data-bundle
 
