@@ -168,8 +168,6 @@ process exomiser {
     # link the staged/downloaded data to predefined path
     ln -s "\$PWD/$exomiser_data/" /data/exomiser-data-bundle
 
-    # link the staged/downloaded data to predefined path
-    ln -s "\$PWD/$exomiser_data/" /data/exomiser-data-bundle
 
     ls -l
     # Workaround for symlinked files not found
