@@ -167,11 +167,11 @@ process exomiser {
     echo "$vcf_path"
     # link the staged/downloaded data to predefined path
     ln -s "\$PWD/$exomiser_data/" /data/exomiser-data-bundle
+    ln -s "\$PWD/${vcf_path}" in.vcf
 
-    ls -l
     # Workaround for symlinked files not found
     HPO_TERMS="${proband_id}-HPO.txt"
-    VCF_PATH="${vcf_path}"
+    VCF_PATH="in.vcf"
 
     # error if no HPO term found
     if [[ "\${HPO_TERMS}" == "null" ]]; then
