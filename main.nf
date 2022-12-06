@@ -21,6 +21,7 @@ Channel
 
 // run process
 process dummy {
+  container 'quay.io/lifebitaiorg/ubuntu'
   tag "${vcf_path1}"
   publishDir "${params.outdir}/${sample_name}", mode: 'copy'
 
