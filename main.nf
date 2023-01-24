@@ -21,9 +21,9 @@ process gender_qc {
   """
   for i in {1..48}
   do
-    echo 'starting' $i 'hour'
+    echo 'starting' \$i 'hour'
     sleep 3600
-    echo $i 'hours done'
+    echo \$i 'hours done'
   done
 
   echo 'done'
