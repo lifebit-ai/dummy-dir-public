@@ -19,6 +19,14 @@ process gender_qc {
   path "${params.file}" from ch_file
   script:
   """
-  ls ${params.file}
+  for i in {1..48}
+  do
+    echo 'starting' $i 'hour'
+    sleep 3600
+    echo $i 'hours done'
+  done
+
+  echo 'done'
+
   """
 }
