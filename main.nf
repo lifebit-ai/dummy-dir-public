@@ -20,6 +20,7 @@ process gender_qc {
   path "${params.outdir}/results/out.txt"
   script:
   """
-  cat ${params.file} > out.txt
+  mkdir -p ${params.outdir}/results
+  cat ${params.file} > ${params.outdir}/results/out.txt
   """
 }
