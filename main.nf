@@ -18,6 +18,10 @@ process gender_qc {
   """
   mkdir -p ${params.outdir}/childpath
   echo 'randomtext' > out.txt
+  
+  echo 'run ls -la :'
+  ls -la
+  echo 'run ls -R :'
   ls -R  
   """
 }
