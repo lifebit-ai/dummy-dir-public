@@ -13,10 +13,10 @@ process gender_qc {
   publishDir "results/"
   container 'quay.io/lifebitai/ubuntu'
   output:
-  path "${params.outdir}/results/out.txt"
+  path "${params.outdir}/childpath/out.txt"
   script:
   """
-  mkdir -p ${params.outdir}/results
-  echo 'randomtext' > ${params.outdir}/results/out.txt
+  mkdir -p ${params.outdir}/childpath
+  echo 'randomtext' > ${params.outdir}/childpath/out.txt
   """
 }
