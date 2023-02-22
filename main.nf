@@ -10,7 +10,7 @@
 
 process gender_qc {
   echo true
-  publishDir "results/"
+  publishDir "results/", mode: 'copy'
   container 'quay.io/lifebitai/ubuntu'
   output:
   path "${params.outdir}/childpath/out.txt"
